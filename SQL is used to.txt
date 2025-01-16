@@ -95,3 +95,7 @@ values (current_date()+1, current_time()+1, now()+1); -- "date" +1 = 1 more day,
 -- unique -- It's for don't have igual valors (it's useful for e-mails)
 create table some_table ( a_product_name varchar(30) unique )
 
+alter table some_table
+add constraint unique(a_product_name); -- for add the constraint in a variable...
+--
+-- 
