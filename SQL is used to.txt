@@ -92,10 +92,14 @@ values (current_date(), current_time(), now()); -- "now" will give you date and 
 insert into t_datetime
 values (current_date()+1, current_time()+1, now()+1); -- "date" +1 = 1 more day, "time and now" +1 = 1 more minute
 --
--- unique -- It's for don't have igual valors (it's useful for e-mails)
+-- unique -- It's for don't have igual valors (it's useful for e-mails). It's a constraint
 create table some_table ( a_product_name varchar(30) unique )
 
 alter table some_table
 add constraint unique(a_product_name); -- for add the constraint in a variable...
 --
--- 
+-- other type of constraint:
+create table some_name( a_product_price decimal(4, 2) not null )
+
+alter table some_name
+modify a_product_price decimal(4, 2) not null -- It's a little different to add a constraint (maybe cuz this have "not" and "null"?)
