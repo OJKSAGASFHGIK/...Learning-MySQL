@@ -1,0 +1,97 @@
+-SQL is used to:
+Create, Retrieve, Update and Delete
+
+-Types of Database:
+Relational(SQL) / Non-Relational(NOSQL = Not only SQL)
+
+-Database Management Systems(DBMS):
+MySQL, PostgreSQL, Microsoft SQL Server, Oracle, etc...
+
+-Base commands:
+create database your_database;
+drop database that_you_want_delete;
+alter database your_database read only = 0; -- can be modified
+alter database your_database read only = 1; -- can't be modified
+--
+-- creating a table
+create table employees_name (
+	employee_id int,
+    first_name varchar(50),
+    last_name varchar(50),
+    hourly_paid decimal(5, 2), -- it's like: (10000, 00)
+    hire_date date
+);
+select * from employees_name;
+rename table employees_name to workers_name;
+drop table employees_name;
+
+alter table employees_name
+add phone_number varchar(15);
+alter table employees_name
+rename column phone_number to email_address;
+modify column email_name varchar(100);
+
+alter table employees_name
+modify email_name varchar(100);
+after last_name;
+alter table employees_name
+modify email_name varchar(100);
+first;
+
+alter table employees_name
+drop column email_name;
+--
+--
+insert into employees_name
+values  (1, "Squidward", "Tentacles", 15.00, "2025-01-03" ),
+        (2, "Spongebob", "Squarepants", 12.50, "2025-01-04");
+
+insert into employees_name (employee_id, first_name, last_name)
+values  (3, "Sheldon", "Plankton");
+--
+-- Select
+select first_name, last_name
+from employees_name
+where employee_id = 1;
+
+select *
+from employees_name
+where first_name = "Spongebob";
+-- or:
+where hourly_paid >= 15;
+-- or:
+where hire_date <= "2025-01-03";
+-- or:
+where employee_id != 1;
+-- or:
+where hire_date is null;
+-- or:
+where hire_date is no null;
+--
+-- update
+update employees_name
+set hourly_paid = 10.50,
+    hire_date = "2025-01-05"
+where employee_id = 3; --if you don't set where, this will modify all your rows (CAREFUL!)
+
+update employees_name
+set hire_date = null
+where employee_id = 3;
+
+delete from employees_name
+where employee_id = 3; --if you don't set where, this will delete everything (CAREFUL!)
+--
+-- commit and rollback
+commit;
+rollback;
+--
+-- datetime
+insert into t_datetime -- considering that you have this table
+values (current_date(), current_time(), now()); -- "now" will give you date and time together
+
+insert into t_datetime
+values (current_date()+1, current_time()+1, now()+1); -- "date" +1 = 1 more day, "time and now" +1 = 1 more minute
+--
+-- unique -- It's for don't have igual valors (it's useful for e-mails)
+create table some_table ( a_product_name varchar(30) unique )
+
