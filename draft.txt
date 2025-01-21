@@ -1,0 +1,10 @@
+create table t_test_transactions(
+	id_pk_payment int primary key auto_increment,
+    a_amount_paid decimal(5,2),
+    id_fk_customer int,
+    constraint fk_customer foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+);
+
+alter table t_test_transactions
+add constraint id_fk_customer
+foreign key(id_fk_customer) references t_test_customers(id_fk_customer)

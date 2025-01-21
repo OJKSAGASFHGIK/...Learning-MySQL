@@ -103,3 +103,20 @@ create table some_name( a_product_price decimal(4, 2) not null )
 
 alter table some_name
 modify a_product_price decimal(4, 2) not null -- It's a little different to add a constraint (maybe cuz this have "not" and "null"?)
+--
+-- check -- Another constraint. In this case, the constraint is used after the variable declared
+create table some_table (
+    min_salary decimal(5,2),
+    constraint chk_min_salary check(min_salary >= 10.00)
+)
+
+alter table some_table
+add constraint chk_min_salary check(min_salary >= 10.00)
+--
+-- default -- If you doesn't add a valor here, this will have a default valor
+create table some_table ( a_product_name decimal(4,2) default 0 )
+
+alter table some_table
+alter a_product_name set default 0;
+--
+-- 

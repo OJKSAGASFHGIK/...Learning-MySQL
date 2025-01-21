@@ -1,0 +1,36 @@
+-- primary key -- Keys can't be the same valor
+create table some_table ( a_some_id int primary key )
+
+alter table some_table
+add constraint primary key(a_some_id);
+
+-- primary key auto_increment -- Keys can't be the same valor
+create table some_table ( a_some_id int primary key auto_increment )
+
+insert into some_table (a_some_valor) values ("my_valor");
+
+alter table some_table
+auto_increment = 1000;
+
+
+--
+-- foreign key -- Example of use to foreign key
+create table t_test_customers( -- this table are the FKs
+	id_fk_customer int primary key auto_increment,
+    a_first_name varchar(54),
+    a_last_name varchar(54)
+);
+
+create table t_test_transactions( -- this table are the PKs that cotains the FKs
+	id_pk_payment int primary key auto_increment,
+    a_amount_paid decimal(5,2),
+    id_fk_customer int,
+    constraint fk_customer foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+
+    foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+);
+
+
+--
+-- joins -It's for bring together the values of primary keys and foreign keys
+from 
