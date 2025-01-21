@@ -14,23 +14,20 @@ auto_increment = 1000;
 
 
 --
--- foreign key -- Example of use to foreign key
-create table t_test_customers( -- this table are the FKs
-	id_fk_customer int primary key auto_increment,
+-- foreign key and join -- consider that you already have a table with one primary key
+create table t_test_customers(
+    id_fk_customer int auto_increment primary key,
     a_first_name varchar(54),
     a_last_name varchar(54)
 );
 
-create table t_test_transactions( -- this table are the PKs that cotains the FKs
-	id_pk_payment int primary key auto_increment,
-    a_amount_paid decimal(5,2),
-    id_fk_customer int,
-    constraint fk_customer foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+alter table t_test_transactions
+add id_fk_customer int;
 
-    foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
-);
+alter table t_test_transactions
+add constraint fk_test_customers
+foreign key(id_fk_customer) references t_test_customers(id_fk_customer);
 
-
---
--- joins -It's for bring together the values of primary keys and foreign keys
-from 
+select * -- you can change the valors that will be shown(remeber this if you want hide the keys)
+from t_test_transactions inner join t_test_customers -- you can use "left join" or "right join" to show every valor of one or other
+on t_test_transactions.id_fk_customer = t_test_customers.id_fk_customer

@@ -1,6 +1,0 @@
-alter table t_test_transactions
-add constraint fk_test_customers
-foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
-
-select * from t_test_transactions inner join t_test_customers
-on t_test_transactions.id_fk_customer = t_test_customers.id_fk_customer
