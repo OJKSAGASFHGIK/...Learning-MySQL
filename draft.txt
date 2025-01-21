@@ -1,10 +1,6 @@
-create table t_test_transactions(
-	id_pk_payment int primary key auto_increment,
-    a_amount_paid decimal(5,2),
-    id_fk_customer int,
-    constraint fk_customer foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
-);
-
 alter table t_test_transactions
-add constraint id_fk_customer
+add constraint fk_test_customers
 foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+
+select * from t_test_transactions inner join t_test_customers
+on t_test_transactions.id_fk_customer = t_test_customers.id_fk_customer
