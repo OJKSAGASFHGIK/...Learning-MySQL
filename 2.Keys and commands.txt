@@ -1,3 +1,5 @@
+-- this topic is for: primary keys, foreign keys, auto_increment, functions
+
 -- primary key -- Keys can't be the same valor
 create table some_table ( a_some_id int primary key )
 
