@@ -33,3 +33,85 @@ foreign key(id_fk_customer) references t_test_customers(id_fk_customer);
 select * -- you can change the valors that will be shown(remeber this if you want hide the keys)
 from t_test_transactions inner join t_test_customers -- you can use "left join" or "right join" to show every valor of one or other
 on t_test_transactions.id_fk_customer = t_test_customers.id_fk_customer
+
+
+--
+-- functions
+select count(a_valors) as column_name from some_table
+
+select max(a_valors) as column_name from some_table
+
+select min(a_valors) as column_name from some_table
+
+select avg(a_valors) as column_name from some_table
+
+select sum(a_valors) as column_name from some_table
+
+select concat(a_first_name," ",a_last_name) as column_name from some_table
+-- for more: https://www.w3schools.com/mysql/mysql_ref_functions.asp
+
+--
+-- and, or, not
+select *
+from some_table
+where some_date > "2025-01-25" and some_work = "cook";
+
+-- or:
+where some_work = "cook" or some_work = "manager";
+-- or:
+where not some_work = "cook" and not some_work = "manager"; -- It will not show "cook" and "manager"
+-- or:
+where some_date between "2025-01-15" and "2025-01-24";
+-- or:
+where some_work in ("cook", "manager"); -- It will show where have these valors
+
+--
+-- wild cards -- Ex: like "s%"
+select * from some_table
+where some_name like "s%"; -- It will show every name that begins with "s"
+
+-- or:
+where some_name like "%s"; -- It will show every name that ends with "s"
+-- or:
+where some_date like "2024%"; -- It will show every date about year 2024
+-- or:
+where some_name like "P_trick"; -- It would find a name with a random letter, like: Patrick or Potrick
+-- or:
+where some_date like "2024-__-05"; -- It's usefull for dates
+-- or:
+where some_name like "_a%";
+
+--
+-- order by
+select * from some_table
+order by some_name;
+
+-- or:
+order by some_name desc; -- It's decrescent order
+-- or:
+order by some_name asc; -- It's the standard, so you don't need to specify
+-- or:
+order by some_name, id_valor; -- It will take the 2 valors, if you have 2 igual valors
+-- Remember that this works for every type of valor that you need
+
+--
+-- limit
+select * from some_table
+limit 4; -- This will show 4 valors
+
+-- or:
+limit 1, 2; -- This will take a valor begging for index 1 and show 2 valors
+
+-- good example of use:
+order by some_name limit 4; -- and you show just 4 valors in alfabetic order
+
+--
+-- union -- for bring tables together (the number of columns have to be the same)
+select some_name, some_age from some_table
+union
+select some_name, some_age from some_table2
+
+-- or:
+select some_name, some_age from some_table
+union all -- It will allow repeat the same valors
+select some_name, some_age from some_table2
