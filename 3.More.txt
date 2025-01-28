@@ -1,0 +1,32 @@
+-- view -- for see some valors of a column in a view table
+create view some_view as
+select some_column, some_column2
+from some_table;
+-- this will update automatically based on your table (you can try use it for spam of e-mail or something like this?)
+
+--
+-- index -- go deep into this if you need
+create index some_valor_index
+on some_table(some_valor);
+show indexes from some_table;
+
+--
+-- subqueries
+select some_name, hourly_pay,
+    (select avg(hourly_pay) from some_table) as name_that_you_want_for_hourly_pay
+from some_table;
+
+--
+-- group by -- Look the commentaries below
+select avg(some_valor), order_date from some_table
+group by order_date -- this will group the valors that is igual in this column
+having avg(some_valor) > 1; -- you have to use "having" instead of "where" with "group by"
+-- It's used for aggregate functions like: sum(), max(), min(), avg(), count()
+
+--
+-- with rollup
+select sum(some_valor), order_date from some_table
+group by order date with rollup;
+
+--
+-- 

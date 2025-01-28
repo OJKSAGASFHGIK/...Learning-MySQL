@@ -28,12 +28,13 @@ add id_fk_customer int;
 
 alter table t_test_transactions
 add constraint fk_test_customers
-foreign key(id_fk_customer) references t_test_customers(id_fk_customer);
+foreign key(id_fk_customer) references t_test_customers(id_fk_customer)
+-- you have to use here "on delete set null"(set the other valor to null) or "on delete cascade"(delete all rols);
 
 select * -- you can change the valors that will be shown(remeber this if you want hide the keys)
 from t_test_transactions inner join t_test_customers -- you can use "left join" or "right join" to show every valor of one or other
 on t_test_transactions.id_fk_customer = t_test_customers.id_fk_customer
-
+-- you can use "set foreign_key_checks = 0" for every test that you would like(remember to back this valor to 1)
 
 --
 -- functions
@@ -115,3 +116,6 @@ select some_name, some_age from some_table2
 select some_name, some_age from some_table
 union all -- It will allow repeat the same valors
 select some_name, some_age from some_table2
+
+--
+-- self joins -- go deep into this if you need
