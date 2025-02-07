@@ -1,1 +1,38 @@
--- Stored Procedure
+-- stored procedure
+delimiter $$
+create procedure procedure_name()
+begin
+
+    select * from some_table;
+
+end $$
+delimiter; -- this will create a table with this data
+
+call procedure_name();
+drop procedure_name; -- for delete
+
+-- or:
+delimiter $$
+create procedure procedure_name(in some_id int)
+begin
+
+    select * from some_table
+    where some_valor_id = some_id; -- and now you can refer to the add
+
+end $$
+delimiter;
+
+call procedure_name(1); -- this will recall the id valor
+drop procedure_name; -- for delete
+
+--
+-- trigger update
+alter table some_table
+add column a_year_salary_column decimal(10, 2) after a_hourly_pay;
+
+create trigger a_year_salary_column
+before update on some_table
+for each row
+set new.a_year_salary_column = (new.a_hourly_pay * 2080);
+
+-- trigger insert
