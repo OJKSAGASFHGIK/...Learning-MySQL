@@ -1,48 +1,44 @@
 import { useState } from "react";
 import axios from "axios";
 
-export default function Login(){
+export default function Register(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/login", {email, password});
+            const res = await axios.post("http://localhost:5000/register", {email, password});
             setMessage(res.data.message);
         } catch (err) {
-            setMessage("Error to make login...");
+            setMessage("Error during registration...")
         }
-    }
+    };
 
     return(
         <>
-            <div className="bg-dark text-white">
-                <div className="container p-3">
-                    <h2 className="">Login:</h2>
-                    <form onSubmit={handleLogin}>
+            <div className="bg-primary text-bg-dark">
+                <section className="container p-3">
+                    <h2>Register</h2>
+                    <form onSubmit={handleRegister}>
                         <input
-                            type="email"
-                            placeholder="E-mail"
+                            type="email" placeholder="E-mail"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <input
-                            type="password"
-                            placeholder="Password"
+                            type="password" placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button type="submit">Sign in</button>
-                        {message && <p className="text-bg-dark">{message}</p>}
+                        <button type="submit">Sign Up</button>
+                        {message && <p className="text-white">{message}</p>}
                     </form>
-                </div>
+                </section>
             </div>
         </>
-    );
+    )
 }
-
-// 

@@ -10,7 +10,7 @@ const port = 5000;
 const db = mysql.createConnection({
     host: "localhost",
     user: "root", // admin db login
-    password: "", // admin db password
+    password: "password", // admin db password
     database: "login_system", // database name
 });
 
